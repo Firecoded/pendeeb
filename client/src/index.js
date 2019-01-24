@@ -3,16 +3,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware} from 'redux';
-import reduxThunk from 'redux-thunk';
+import think from './middleware/think';
 
 import App from './components/App';
-// import reducers from './reducers';
+import rootReducer from './reducers';
 
-// const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
+const store = createStore(rootReducer, {}, applyMiddleware(think));
 
 ReactDOM.render(
-    // <Provider store = {store}>
-        <App />,
-    // </Provider>, 
+    <Provider store = {store}>
+        <App />
+     </Provider>, 
     document.querySelector('#root')
 );
