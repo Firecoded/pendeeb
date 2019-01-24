@@ -8,7 +8,11 @@
     "npm": "5.0.3"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev": "npm-run-all --parallel dev:*",
+    "dev:server": "nodemon index.js",
+    "dev:client": "npm start --prefix client",
+    "bundle": "npm run bundle --prefix client"    
   },
   "author": "",
   "license": "ISC",
