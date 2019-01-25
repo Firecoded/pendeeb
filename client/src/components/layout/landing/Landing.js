@@ -3,7 +3,7 @@ import axios from 'axios';
 import {Link} from 'react-router-dom';
 import "./landing.css";
 
-export default class Landing extends Component {
+class Landing extends Component {
   
   
     componentDidMount = async () => {
@@ -23,3 +23,5 @@ export default class Landing extends Component {
         )
     }
 }
+
+export default Landing;
