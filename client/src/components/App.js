@@ -1,10 +1,14 @@
-import React, { Component, Fragment } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import React, { Component } from 'react';
+import { BrowserRouter, Route , Switch} from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import './app.css';
 
-import Landing from './layout/Landing';
+import AccountRoutes from './account';
+import NotFound from './layout/404';
+import Nav from './layout/nav';
+
+import Landing from './layout/landing/Landing';
 
 // const Landing = () => <h1>Landing</h1>
 const Dashboard = () => <h1>Dashboard</h1>
@@ -17,13 +21,16 @@ class App extends Component {
   render() {
       return (
         <div className="app">
+            <Nav/>
             <BrowserRouter>
-                <Fragment>
+                <Switch>    
                     {/* <Header/>  */}
                     <Route exact path = "/" component = {Landing}/>
-                    <Route exact path = "/dashboard" component = {Dashboard}/>
-                    <Route path = "/dashboard/add" component = {AddToCollection}/>
-                </Fragment>
+                    <Route path = "/account" component = {AccountRoutes}/>
+                    <Route exact path = "/account/dashboard" component = {Dashboard}/>
+                    <Route path = "/account/dashboard/add" component = {AddToCollection}/>
+                    <Route component = {NotFound}/>
+                </Switch>
             </BrowserRouter>
         </div>
       );
