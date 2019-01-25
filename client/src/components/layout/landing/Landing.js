@@ -17,7 +17,7 @@ class Landing extends Component {
                 <div className = "logo-cont">
                     <h1>PenDeeb</h1>
                     <p>app tagline</p>
-                    <Link to = "/dashboard" className = "landing-link btn center">Dashboard</Link>
+                    <Link to = "/account/dashboard" className = "landing-link btn center black">Dashboard</Link>
                 </div>
             </div>
         )

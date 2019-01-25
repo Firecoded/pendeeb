@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route , Switch} from 'react-router-dom';
+import { Route , Switch} from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import './app.css';
@@ -22,16 +22,14 @@ class App extends Component {
       return (
         <div className="app">
             <Nav/>
-            <BrowserRouter>
-                <Switch>    
-                    {/* <Header/>  */}
-                    <Route exact path = "/" component = {Landing}/>
-                    <Route path = "/account" component = {AccountRoutes}/>
-                    <Route exact path = "/account/dashboard" component = {Dashboard}/>
-                    <Route path = "/account/dashboard/add" component = {AddToCollection}/>
-                    <Route component = {NotFound}/>
-                </Switch>
-            </BrowserRouter>
+            <Switch>  
+                {/* <Header/>  */}
+                <Route exact path = "/" component = {Landing}/>
+                <Route path = "/account" component = {AccountRoutes}/>
+                <Route exact path = "/account/dashboard" component = {Dashboard}/>
+                <Route path = "/account/dashboard/add" component = {AddToCollection}/>
+                <Route component = {NotFound}/>
+            </Switch>
         </div>
       );
     }

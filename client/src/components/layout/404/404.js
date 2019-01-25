@@ -7,7 +7,7 @@ export default props => (
     <div className = "not-found-container">
         <div className = "not-found-body">
             <h1>404 Page Not Found</h1>
-            <Link className = "btn" to = "/"> Return Home </Link>
+            <Link className = "btn black" to = "/"> Return Home </Link>
         </div>
     </div>
 )
