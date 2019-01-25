@@ -8,7 +8,7 @@ import AccountRoutes from './account';
 import NotFound from './layout/404';
 import Nav from './layout/nav';
 
-import Landing from './layout/landing/Landing';
+import Landing from './layout/landing';
 
 // const Landing = () => <h1>Landing</h1>
 const Dashboard = () => <h1>Dashboard</h1>
@@ -22,12 +22,11 @@ class App extends Component {
       return (
         <div className="app">
             <Nav/>
-            <Switch>  
-                {/* <Header/>  */}
+            <Switch>
                 <Route exact path = "/" component = {Landing}/>
                 <Route path = "/account" component = {AccountRoutes}/>
-                <Route exact path = "/account/dashboard" component = {Dashboard}/>
-                <Route path = "/account/dashboard/add" component = {AddToCollection}/>
+                <Route exact path = "/dashboard" component = {Dashboard}/>
+                <Route path = "/dashboard/add" component = {AddToCollection}/>
                 <Route component = {NotFound}/>
             </Switch>
         </div>

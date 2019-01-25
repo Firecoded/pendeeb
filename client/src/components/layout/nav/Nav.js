@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import MobileNav from './SideNav';
 import "./nav.css";
 
 class Nav extends Component {
@@ -13,7 +14,7 @@ class Nav extends Component {
         auth: [
             {
                 text: "View All",
-                to: '/account/dashboard'
+                to: '/dashboard'
             },
             {
                 text: 'Profile',
@@ -21,7 +22,7 @@ class Nav extends Component {
             },
             {
                 text: 'Add',
-                to: '/account/dashboard/add'
+                to: '/dashboard/add'
             }
                 
         ],
@@ -39,14 +40,14 @@ class Nav extends Component {
 
     renderSignout = () =>{
         return(
-            <button className = "btn waves-effect waves grey darken-3 sign-out-btn" 
+            <button className = "btn waves-effect waves grey darken-3 " 
             onClick = { () => console.log('signout click')}>
             Sign Out
             </button>
         )
     }
 
-    buildLinks = (link) => {
+    buildLink = (link) => {
         return (
             <li key = {link.to} >
                 <Link to= {link.to}>
@@ -60,26 +61,33 @@ class Nav extends Component {
         const auth = true;
         let authLinks = [];
         const {auth: navAuth, common, nonAuth} = this.state;
-        const commonLinks = common.map(this.buildLinks);
+        const commonLinks = common.map(this.buildLink);
         if(auth){
-            authLinks = navAuth.map(this.buildLinks);
-            authLinks.push(<li key = "/sign-out">{this.renderSignout()}</li>)
+            authLinks = navAuth.map(this.buildLink);
+            authLinks.push(<li key = "/sign-out" className = "sign-out-btn">{this.renderSignout()}</li>)
         } else {
-            authLinks = nonAuth.map(this.buildLinks);
+            authLinks = nonAuth.map(this.buildLink);
         }
         return [...commonLinks, ...authLinks];
     }
   
     render() {
         return (
-            <nav className = "black">
-                <div className = "nav-wrapper">
-                    <Link to = "/" className = "brand-logo">PenDeeb</Link>
-                    <ul className = "right">
-                        {this.renderLinks()}
-                    </ul>
-                </div>
-            </nav>
+            <Fragment>
+                <nav className = "black">
+                    <div className = "nav-wrapper">
+                        <Link to = "/" className = "brand-logo">PenDeeb</Link>
+                        <Link to = "" data-target="side-nav" className = "sidenav-trigger">
+                            <i className = "material-icons">menu</i>
+                        </Link>
+                        <ul className = "right hide-on-med-and-down">
+                            {this.renderLinks()}
+                        </ul>
+                    </div>
+                </nav>
+                <MobileNav renderLinks = {this.renderLinks}/>   
+            </Fragment>
+            
         )
     }
 }
