@@ -3,10 +3,12 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import Input from "../form/input";
 import { validation } from '../../helpers';
+import { signUp } from '../../actions';
 
 let SignUp = props => {
     const handleSignUp = (values) => {
         console.log( values)
+        props.signUp(values);
     }
 
     return (
@@ -61,9 +63,16 @@ function validate({firstName, lastName, email, password, confirmPassword}){
     return errors;
 }
 
-export default connect(null, {})(
+export default connect(null, { signUp })(
     reduxForm({
         form: 'sign-up',
-        validate
+        validate,
+        initialValues: {
+            firstName: "Test",
+            lastName: "Account",
+            email: "test@email.com",
+            password: "asdF1234!",
+            confirmPassword: "asdF1234!"
+        }
     })(SignUp)
 );
