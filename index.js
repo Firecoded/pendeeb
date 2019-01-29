@@ -1,9 +1,11 @@
 const express = require('express');
 const cors = require('cors');
 const { resolve } = require('path');
-const passport = require('passport');
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const keys = require('./config/keys');
+// const passport = require('passport');
+// const GoogleStrategy = require('passport-google-oauth20').Strategy;
+// const keys = require('./config/keys');
+
+require('./db');
 
 const app = express();
 

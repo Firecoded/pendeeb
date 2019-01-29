@@ -3,3 +3,6 @@ keys.js
 .idea
 .vscode
 .DS_Store
+
+config/*.js
+!config/index.js
