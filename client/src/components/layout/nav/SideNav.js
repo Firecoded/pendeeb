@@ -16,7 +16,7 @@ class SideNav extends Component{
         )
     }
     
-}
+};
 
 export default SideNav;
 
