@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route , Switch} from 'react-router-dom';
-import { connect } from 'react-redux';
-import * as actions from '../actions';
+// import { connect } from 'react-redux';
+// import * as actions from '../actions';
 import './app.css';
 
 import AccountRoutes from './account';
