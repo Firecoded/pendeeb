@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const bcrypt = require('bcrypt-nodejs');
+const bcrypt = require('bcryptjs');
 const { findByPid } = require('./interfaces');
 
 module.exports = (db, userStatuses, userTypes) => {
@@ -25,7 +25,7 @@ module.exports = (db, userStatuses, userTypes) => {
         },
         password: {
             allowNull: false,
-            type: Sequelize.INTEGER(60),
+            type: Sequelize.STRING(60),
         },
         pid: {
             allowNull: false,
