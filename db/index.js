@@ -21,3 +21,8 @@ sequelize.authenticate().then(()=>{
 });
 
 module.exports = sequelize;
+
+require('./models');
+
+sequelize.sync(); // if you want to rebuild tables after making changes you can pass in {force: true}
+
