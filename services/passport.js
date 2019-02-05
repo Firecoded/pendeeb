@@ -3,7 +3,8 @@ const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 const LocalStrategy = require('passport-local');
 const { users } = require('../db/models');
-const jwtSecret = require('../config/keys').jwtConfig;
+const keys = require('../config/keys');
+keys.jwtSecret.jwtConfig;
 
 const localOptions = {
     usernameField: 'email'
@@ -27,5 +28,23 @@ const localLogin = new LocalStrategy(localOptions, async (email, password, done)
         done(err);
     }
 });
+
+const jwtOptions = {
+    jwtFromRequest: ExtractJwt.fromHeader('authorization'),
+    secretOrKey: keys.jwtSecret
+};
+
+const jwtLogin = new JwtStrategy(jwtOptions, async (payload, done) => {
+    try{
+        const user = await users.findByPk(payload.uid);
+        if(!user) return done(null, false);
+
+        done(null, user);
+    } catch(err){
+        done(null, false);
+    }
+});
+
+passport.use(jwtLogin);
 
 passport.use(localLogin);

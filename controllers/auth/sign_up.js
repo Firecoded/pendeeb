@@ -50,7 +50,7 @@ module.exports = async (req, res) => {
 
         await newUser.save();
 
-        res.send({
+        res.status(200).send({
             success: true,
             message: "this is the sign up endpoint"
         });
