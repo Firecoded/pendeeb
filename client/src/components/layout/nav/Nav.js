@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import MobileNav from './SideNav';
+import { connect } from 'react-redux';
+import { signOut } from '../../../actions';
 import "./nav.css";
 
 class Nav extends Component {
@@ -41,7 +43,7 @@ class Nav extends Component {
     renderSignout = () =>{
         return(
             <button className = "btn waves-effect waves grey darken-3 " 
-            onClick = { () => console.log('signout click')}>
+            onClick = { this.props.signOut }>
             Sign Out
             </button>
         )
@@ -58,7 +60,7 @@ class Nav extends Component {
     }
 
     renderLinks = () => {
-        const auth = false;
+        const {auth} = this.props;
         let authLinks = [];
         const {auth: navAuth, common, nonAuth} = this.state;
         const commonLinks = common.map(this.buildLink);
@@ -92,4 +94,10 @@ class Nav extends Component {
     }
 }
 
-export default Nav;
+const mapStateToProps = (state) => {
+    return {
+        auth: state.user.auth
+    }
+}
+
+export default connect(mapStateToProps, { signOut })(Nav);
