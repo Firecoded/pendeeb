@@ -1,5 +1,6 @@
 const validation = require('../../helpers/validation');
 const { users } = require('../../db/models');
+const { tokenForUser, userDataToSend } = require('../../helpers/auth');
 
 module.exports = async (req, res) => {
     const { body: { firstName, lastName, email, password } } = req;
@@ -50,9 +51,10 @@ module.exports = async (req, res) => {
 
         await newUser.save();
 
-        res.send({
+        res.status(200).send({
             success: true,
-            message: "this is the sign up endpoint"
+            token: tokenForUser(newUser),
+            user: userDataToSend(newUser)
         });
     } catch(err){
         console.log('server sign up error: ', err);

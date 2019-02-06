@@ -7,7 +7,6 @@ import { signUp } from '../../actions';
 
 let SignUp = props => {
     const handleSignUp = (values) => {
-        console.log( values)
         props.signUp(values);
     }
 
