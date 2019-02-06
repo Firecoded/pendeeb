@@ -4,6 +4,7 @@ import { Route , Switch} from 'react-router-dom';
 // import * as actions from '../actions';
 import './app.css';
 
+import auth from './hoc/auth';
 import AccountRoutes from './account';
 import NotFound from './layout/404';
 import Nav from './layout/nav';
